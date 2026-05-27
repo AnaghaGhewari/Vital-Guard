@@ -1,91 +1,68 @@
-# VitalGuard
+<div align="center">
 
-AI-powered health risk monitoring backend built with FastAPI.
+# 🩺 VitalGuard
 
----
+### AI-Powered Health Risk Monitoring Backend
 
-# Project Overview
+Built with **FastAPI • Python • Machine Learning**
 
-VitalGuard is a backend-focused health monitoring system that analyzes user vitals and predicts potential health risks.
-
-The goal of this project is to combine:
-
-- Backend Engineering
-- FastAPI
-- Machine Learning
-- API Design
-- Data Validation
-- Health Analytics
-
-into one real-world system.
+</div>
 
 ---
 
-# Features Planned
+## 🚀 About The Project
 
-- User Authentication
-- Vital Logging API
-- Health Risk Scoring
-- ML-based Risk Prediction
-- Risk History Tracking
-- Weather-aware Health Analysis
-- Swagger API Documentation
-- JSON-based API Responses
+VitalGuard is a backend-focused health monitoring system that analyzes user vitals and predicts potential health risks using intelligent APIs and future ML integration.
+
+This project is part of my backend engineering + AI/ML journey, focused on building production-style systems from scratch.
 
 ---
 
-# Tech Stack
+## ✨ Features
 
-## Backend
+- 🔐 Authentication APIs
+- ❤️ Vital Tracking
+- 📊 Risk Score Calculation
+- 🌦️ Weather-Aware Health Analysis
+- 🤖 ML Integration (Upcoming)
+- 📁 JSON & Database Storage
+- 📄 Auto-generated Swagger Docs
+
+---
+
+## 🛠️ Tech Stack
+
+### Backend
 - Python
 - FastAPI
 - Uvicorn
 
-## Future Integrations
+### Upcoming
 - PostgreSQL
 - SQLAlchemy
 - JWT Authentication
-- Machine Learning Models
+- Scikit-learn
 - Docker
-- Cloud Deployment
 
 ---
 
-# Current Progress
-
-## Week 1
-Completed backend fundamentals:
-- HTTP
-- REST APIs
-- JSON
-- Type Hints
-- Decorators
-- Exception Handling
-- Mock Servers
-- API Calling
-
-## Week 2
-Starting real VitalGuard backend architecture.
-
----
-
-# Project Structure
+## 📂 Project Structure
 
 ```text
 vitalguard/
-├── venv/
-├── requirements.txt
 ├── main.py
 ├── routers/
 ├── models/
-└── core/
+├── core/
+├── requirements.txt
+└── README.md
 ```
 
 ---
 
-# Running the Project
+## ⚡ Running The Project
 
-## Create Virtual Environment
+### Create Virtual Environment
 
 ```bash
 python -m venv venv
@@ -99,7 +76,7 @@ venv\Scripts\activate
 
 ---
 
-## Install Dependencies
+### Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -107,7 +84,7 @@ pip install -r requirements.txt
 
 ---
 
-## Run FastAPI Server
+### Start FastAPI Server
 
 ```bash
 uvicorn main:app --reload
@@ -115,11 +92,9 @@ uvicorn main:app --reload
 
 ---
 
-# API Documentation
+## 📘 API Docs
 
-After starting the server:
-
-Swagger Docs:
+After running the server:
 
 ```text
 http://127.0.0.1:8000/docs
@@ -127,17 +102,15 @@ http://127.0.0.1:8000/docs
 
 ---
 
-# Learning Goals
+## 🎯 Current Status
 
-This project is part of a deep backend engineering journey focused on:
-
-- Building production-style APIs
-- Understanding backend architecture
-- Integrating machine learning into backend systems
-- Creating resume-worthy projects
+🚧 Backend architecture in progress  
+🚀 Building the project step-by-step while learning backend engineering deeply.
 
 ---
 
-# Author
+<div align="center">
 
-Anagha Ghewari
+### 🌸 Built by Anagha Ghewari
+
+</div>
