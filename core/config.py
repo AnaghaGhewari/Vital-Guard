@@ -5,15 +5,16 @@ class Settings(BaseSettings):
     app_name : str = "VitalGuard"
     version : str ="1.0.0"
     debug : bool = True
+    secret_key : str= "fallback-secret"
+
+    class Config:
+        ene_file = ".env"
+
 
 settings = Settings() 
 
-class VitalLog(BaseModel):
-    heart_rate : int = Field(..., ge = 30, le = 220)
-    sleep_hours : float = Field(..., ge= 0, le= 24)
-    steps: int = Field(..., ge=0)
 
-    
+
 
 
 
