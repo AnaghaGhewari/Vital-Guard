@@ -34,7 +34,7 @@ class UserResponse(BaseModel):
     class Config:
         from_attributes = True   #allows reading from DB object 
 
-class TakeResponse(BaseModel):
+class TokenResponse(BaseModel):
     """Returns after the successful login"""
     access_token: str
     token_type:   str ="bearer"
