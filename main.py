@@ -1,25 +1,3 @@
-from typing import Optional, List
-from datetime import datetime
-
-user_id: int            = 42
-name: str               = "Anagha"
-risk_score: float       = 0.73
-is_active: bool         = True
-tags: List[str]         = ["diabetes", "hypertension"]
-notes: Optional[str]    = None        # might not exist
-logged_at: datetime     = datetime.now()
-
-# Function returning a typed dict
-def get_risk(user_id: int) -> dict:
-    return {"user_id": user_id, "score": 0.73}
-
-
-
-
-
-
-
-
 from fastapi import FastAPI
 from core.config import settings
 from datetime import datetime
@@ -67,4 +45,3 @@ def log_vitals(data: VitalCreate):
         "notes":         data.notes,
         "logged_at":     datetime.now()
     }
-
