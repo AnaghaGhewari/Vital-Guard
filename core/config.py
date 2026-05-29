@@ -14,6 +14,12 @@ class Settings(BaseSettings):
 settings = Settings() 
 
 
+#Quick test - run this file directly to vefify
+
+if __name__== "__main__":
+    print(settings.app_name)
+    print(settings.secret_key)
+
 
 
 
