@@ -1,5 +1,5 @@
 from pydantic_settings import BaseSettings
-from pydantic import BaseModel, Field
+
 
 class Settings(BaseSettings):
     app_name : str = "VitalGuard"
@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     secret_key : str= "fallback-secret"
 
     class Config:
-        ene_file = ".env"
+        env_file = ".env"
 
 
 settings = Settings() 
