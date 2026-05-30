@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from core.config import settings
 from datetime import datetime
 
+
 app = FastAPI(
     title= settings.app_name,
     version= settings.version,
