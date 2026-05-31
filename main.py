@@ -2,7 +2,11 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from core.config import settings
 from routers import auth, vitals, users
+from db.session import engine, Base
+from models import user, vital
 
+#Create all tables in PostgreSQL on startup
+Base.metadata.create_all(bind = engine)
 
 
 app = FastAPI(

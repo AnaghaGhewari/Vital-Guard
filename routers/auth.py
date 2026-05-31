@@ -1,6 +1,9 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from datetime import datetime
 from schemas.user import UserRegister, UserLogin, UserResponse, TokenResponse
+from sqlalchemy.orm import Session
+from db.session import get_db
+from models.user import User
 
 #APIRouter is like a mini FastAPI app for one feature
 # prefix   → added to every route in this file automatically
@@ -8,42 +11,50 @@ from schemas.user import UserRegister, UserLogin, UserResponse, TokenResponse
 
 routers = APIRouter(prefix="/api/v1/auth", tags=["Authentication"])
 
-#Fake in-memory user - replaced by the DB later
-FAKE_USERS= []
+
+
 
 @routers.post("/register", response_model=UserResponse, status_code =201)
-def register(data: UserRegister):
-    #Check if the email already exists
-    existing = [u for u in FAKE_USERS if u["email"]==data.email]
+def register(data: UserRegister, db: Session = Depends(get_db)):
+    #Check if the email already exists in DB
+    existing = db.query(User).filter(User.email == data.email).first()
     if existing:
         raise HTTPException(
             status_code=400,
-            detail="Email already regitered"
+            detail="Email already registered"
 
         )
-    user={
-        "id":         len(FAKE_USERS)+1,
-        "name":       data.name,
-        "email":      data.email,
-        "created_at": datetime.now()
+    user= User(
+        
+        name       = data.name,
+        email      = data.email,
+        password   = data.password    #hash this properly later
 
-    }
+    )
 
-    FAKE_USERS.append(user)
+    db.add(user)
+    db.commit()
+    db.refresh(user)    #Loads the auto generated id and the created_at
     return user
 
 @routers.post("/login" , response_model=TokenResponse)
-def login (data: UserLogin):
+def login (data: UserLogin, db:Session = Depends(get_db)):
     #Find user by  email
-    user = next((u for u in FAKE_USERS if u["email"] == data.email),None)
+    user = db.query(User).filter(User.email == data.email).first()
     if not user:
         raise HTTPException(
             status_code= 401,
             detail="Invalid email or password"
         )
-    #Real password check comes later
-    return{
-        "access_token":   "fake_token_replace_in_week4",
-        "token_type":     "bearer",
-        "user_id":        user["id"]
+    #plain password check for now - bcrypt later
+    if user.password != data.password:
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid email or password"
+    )
+
+    return {
+        "access_token": "fake_token_replaced_week4",
+        "token_type":   "bearer",
+        "user_id":      user.id
     }
