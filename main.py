@@ -4,6 +4,15 @@ from core.config import settings
 from routers import auth, vitals, users
 from db.session import engine, Base
 from models import user, vital
+from fastapi.exceptions import RequestValidationError
+from starlette.exceptions import HTTPException as StarletteHTTPException
+from core.exception import(
+    http_exception_handler,
+    validation_exception_handler,
+    generic_expectaltion_handler
+)
+
+
 
 #Create all tables in PostgreSQL on startup
 Base.metadata.create_all(bind = engine)
@@ -15,6 +24,13 @@ app = FastAPI(
     description= "AI - powered early warning systems for chroni disease risk"
 
 )
+#Exception Handler
+app.add_exception_handler(StarletteHTTPException, http_exception_handler)
+app.add_exception_handler(RequestValidationError, validation_exception_handler)
+app.add_exception_handler(Exception, generic_expectaltion_handler)
+
+
+
 
 #-------CORS - allows the React frontend to call this API
 

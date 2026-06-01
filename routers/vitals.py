@@ -4,6 +4,7 @@ from schemas.vital import VitalCreate, VitalResponse, VitalListResponse
 from sqlalchemy.orm import Session
 from db.session import get_db
 from models.vital import Vital
+from sqlalchemy.exc import SQLAlchemyError
 
 
 routers = APIRouter(prefix="/api/v1/vitals", tags=["Vitals"])
@@ -13,18 +14,23 @@ routers = APIRouter(prefix="/api/v1/vitals", tags=["Vitals"])
 # ── POST /api/v1/vitals ───────────────────────────────
 @routers.post("", response_model=VitalResponse, status_code=201)
 def log_vital(data: VitalCreate, db: Session = Depends(get_db)):
-   
-   vital = Vital(
-       user_id = 1,
-       heart_rate = data.heart_rate,
-       sleep_hours = data.sleep_hours,
-       steps = data.steps,
-       notes = data.notes
-   )
-   db.add(vital)
-   db.commit()
-   db.refresh(vital)
-   return vital
+    try:
+        vital = Vital(
+            user_id=1,
+            heart_rate=data.heart_rate,
+            sleep_hours=data.sleep_hours,
+            steps=data.steps,
+            notes=data.notes
+        )
+        db.add(vital)
+        db.commit()
+        db.refresh(vital)
+        return vital
+    except SQLAlchemyError:
+        db.rollback()
+        raise HTTPException(status_code=500, detail="Could not save vital")
+      
+    
 # ── GET /api/v1/vitals ────────────────────────────────
 # Query params: ?page=1&limit=20
 @routers.get("", response_model=VitalListResponse)
