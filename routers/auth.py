@@ -16,7 +16,7 @@ routers = APIRouter(prefix="/api/v1/auth", tags=["Authentication"])
 
 
 
-routers.post("/register", response_model=UserResponse, status_code=201)
+@routers.post("/register", response_model=UserResponse, status_code=201)
 def register(data: UserRegister, db: Session = Depends(get_db)):
     # Check duplicate email
     existing = db.query(User).filter(User.email == data.email).first()
