@@ -6,10 +6,10 @@ from db.session import engine, Base
 from models import user, vital
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
-from core.exception import(
+from core.exception import (
     http_exception_handler,
     validation_exception_handler,
-    generic_expectaltion_handler
+    generic_exception_handler
 )
 
 
@@ -21,14 +21,24 @@ Base.metadata.create_all(bind = engine)
 app = FastAPI(
     title= settings.app_name,
     version= settings.version,
-    description= "AI - powered early warning systems for chroni disease risk"
+    description= "AI - powered early warning systems for chronic disease risk"
 
 )
 #Exception Handler
-app.add_exception_handler(StarletteHTTPException, http_exception_handler)
-app.add_exception_handler(RequestValidationError, validation_exception_handler)
-app.add_exception_handler(Exception, generic_expectaltion_handler)
+app.add_exception_handler(
+    StarletteHTTPException,
+    http_exception_handler
+)
 
+app.add_exception_handler(
+    RequestValidationError,
+    validation_exception_handler
+)
+
+app.add_exception_handler(
+    Exception,
+    generic_exception_handler
+)
 
 
 
@@ -55,6 +65,6 @@ def root():
         "docs":"/docs"
     }
 
-@app.get("health")
+@app.get("/health")
 def health():
     return{"status":"ok"}

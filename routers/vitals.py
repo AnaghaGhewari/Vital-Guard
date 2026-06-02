@@ -57,7 +57,7 @@ def get_vitals(
 # {id} is a path parameter — part of the URL itself
 @routers.get("/{vital_id}", response_model=VitalResponse)
 def get_vital(vital_id: int, db: Session = Depends(get_db)):
-    vital = db.query(Vital),filter(Vital.id == vital_id).first()
+    vital = db.query(Vital).filter(Vital.id == vital_id).first()
     if not vital:
         raise HTTPException(status_code=404, detail=f"Vital {vital_id} not found")
     return vital
