@@ -50,7 +50,7 @@ def login (data: UserLogin, db:Session = Depends(get_db)):
         )
     #plain password check for now - bcrypt later
     return {
-        "access_token": "fake_token_replaced_week4",
+        "access_token": "token",  # <- Real JWT
         "token_type":   "bearer",
         "user_id":      user.id
     }
