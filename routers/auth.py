@@ -43,7 +43,7 @@ def register(data: UserRegister, db: Session = Depends(get_db)):
 def login (data: UserLogin, db:Session = Depends(get_db)):
     #Find user by  email
     user = db.query(User).filter(User.email == data.email).first()
-    if not user or verify_password(data.password, user.password):
+    if not user or not verify_password(data.password, user.password):
         raise HTTPException(
             status_code= 401,
             detail="Invalid Credentials"
