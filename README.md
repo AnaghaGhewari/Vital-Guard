@@ -4,84 +4,81 @@
 
 ### AI-Powered Health Risk Monitoring Platform
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&center=true&width=700&lines=Building+with+FastAPI;Learning+Backend+Engineering;PostgreSQL+%7C+SQLAlchemy+%7C+Python;Future+ML-Powered+Health+Insights" />
-
-<br>
+#### Building a production-style backend using FastAPI, PostgreSQL, JWT & Machine Learning 🚀
 
 ![Python](https://img.shields.io/badge/Python-3.13-blue?style=for-the-badge\&logo=python)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-success?style=for-the-badge\&logo=fastapi)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue?style=for-the-badge\&logo=postgresql)
 ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-ORM-red?style=for-the-badge)
+![JWT](https://img.shields.io/badge/JWT-Authentication-orange?style=for-the-badge)
 
 <br>
 
-![Status](https://img.shields.io/badge/Status-In%20Development-orange?style=flat-square)
-![Version](https://img.shields.io/badge/Version-v0.1-blue?style=flat-square)
-![Backend](https://img.shields.io/badge/Focus-Backend%20Engineering-green?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Active%20Development-brightgreen?style=flat-square)
+![Version](https://img.shields.io/badge/Version-v0.3-blue?style=flat-square)
 
 </div>
 
-
 ---
-> 🚧 This project is currently under active development as part of my Backend Engineering and AI/ML learning journey.
 
-## 🌟 Project Vision
-
-VitalGuard is an AI-powered health monitoring platform designed to collect user vitals, analyze health patterns, and predict potential health risks.
-
-This project is being built as part of my journey into:
-
-* ⚡ Backend Engineering
-* 🧠 Artificial Intelligence & Machine Learning
-* ☁️ Cloud Technologies
-* 📊 Health Analytics
-
-The goal is to build a production-style backend system from scratch while learning real-world software engineering practices.
+> 🚧 This project is actively being developed as part of my Backend Engineering, AI/ML, and Cloud Computing learning journey.
 
 ---
 
-## ✨ Features
+## 🌟 About VitalGuard
+
+VitalGuard is an AI-powered health monitoring backend designed to collect user vitals, manage health records securely, and serve as the foundation for future machine learning-driven health risk prediction.
+
+The project focuses on learning real-world backend development practices while building a scalable healthcare platform from scratch.
+
+---
+
+## ✨ Current Features
 
 ### 🔐 Authentication
 
 * User Registration
 * User Login
-* API Versioning
-* Request Validation
+* Password Hashing with bcrypt
+* JWT Token Generation
+* Secure Authentication Flow
 
-### ❤️ Health Monitoring
+### ❤️ Vital Monitoring
 
-* Vital Tracking
-* Risk Assessment
-* Historical Records
-* Weather-Aware Analysis
+* Log Daily Health Vitals
+* Retrieve Vital Records
+* Pagination Support
+* Persistent Database Storage
 
-### 🤖 AI/ML (Upcoming)
+### 🗄️ Database
 
-* Risk Prediction Models
-* Personalized Health Insights
-* Smart Health Recommendations
+* PostgreSQL Integration
+* SQLAlchemy ORM
+* Relational Data Modeling
+* Session Management
 
 ### 📄 Developer Experience
 
 * Swagger UI Documentation
-* Modular Architecture
-* PostgreSQL Integration
-* SQLAlchemy ORM
+* Pydantic Validation
+* Structured API Responses
+* Global Exception Handling
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Category      | Technologies             |
-| ------------- | ------------------------ |
-| Backend       | Python, FastAPI, Uvicorn |
-| Database      | PostgreSQL, SQLAlchemy   |
-| Validation    | Pydantic                 |
-| Configuration | Pydantic Settings        |
-| Migrations    | Alembic                  |
-| Future ML     | Scikit-Learn             |
-| Deployment    | Docker, Cloud            |
+| Category       | Technology       |
+| -------------- | ---------------- |
+| Language       | Python           |
+| Framework      | FastAPI          |
+| Database       | PostgreSQL       |
+| ORM            | SQLAlchemy       |
+| Authentication | JWT              |
+| Security       | Passlib + bcrypt |
+| Validation     | Pydantic         |
+| API Testing    | Swagger UI       |
+| Future ML      | Scikit-Learn     |
 
 ---
 
@@ -93,7 +90,12 @@ vitalguard/
 ├── main.py
 │
 ├── core/
-│   └── config.py
+│   ├── config.py
+│   ├── security.py
+│   └── exception.py
+│
+├── db/
+│   └── session.py
 │
 ├── routers/
 │   ├── auth.py
@@ -105,11 +107,8 @@ vitalguard/
 │   └── vital.py
 │
 ├── models/
-│   └── user.py
-│
-├── db/
-│   ├── session.py
-│   └── base.py
+│   ├── user.py
+│   └── vital.py
 │
 ├── .env
 ├── requirements.txt
@@ -118,27 +117,27 @@ vitalguard/
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Running The Project
 
-### 1️⃣ Create Virtual Environment
+### Create Virtual Environment
 
 ```bash
 python -m venv venv
 ```
 
-### 2️⃣ Activate Environment
+### Activate Environment
 
 ```bash
 venv\Scripts\activate
 ```
 
-### 3️⃣ Install Dependencies
+### Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4️⃣ Run The Server
+### Run The Server
 
 ```bash
 uvicorn main:app --reload
@@ -148,13 +147,13 @@ uvicorn main:app --reload
 
 ## 📘 API Documentation
 
-After starting the server:
+Once the server is running:
 
 ```text
 http://127.0.0.1:8000/docs
 ```
 
-FastAPI automatically generates interactive Swagger UI documentation for all endpoints.
+Swagger UI provides interactive testing for every endpoint.
 
 ---
 
@@ -163,79 +162,64 @@ FastAPI automatically generates interactive Swagger UI documentation for all end
 ```text
 Backend Foundations     ██████████ 100%
 FastAPI Setup           ██████████ 100%
-Authentication APIs     ████████░░  80%
-PostgreSQL Integration  ██████░░░░  60%
-JWT Authentication      █░░░░░░░░░  10%
+PostgreSQL Setup        ██████████ 100%
+SQLAlchemy ORM          ██████████ 100%
+Authentication APIs     ██████████ 100%
+Password Hashing        ██████████ 100%
+JWT Generation          ██████████ 100%
+Current User Logic      ██████░░░░  60%
+Protected Routes        ░░░░░░░░░░   0%
+User Scoped Data        ░░░░░░░░░░   0%
 ML Integration          ░░░░░░░░░░   0%
+Cloud Deployment        ░░░░░░░░░░   0%
 ```
 
 ---
 
-## 📝 Progress Log
+## 📝 Learning Journey
 
-### ✅ Week 1 — Backend Foundations
+### Week 1 — Backend Foundations ✅
 
 * HTTP & REST APIs
-* JSON Processing
-* Type Hints
+* JSON Handling
 * Decorators
 * Exception Handling
-* API Requests
 * Mock Servers
 * Git & GitHub Workflow
 
----
-
-### 🚧 Week 2 — VitalGuard Development
-
-#### Day 1
+### Week 2 — FastAPI & Databases ✅
 
 * FastAPI Setup
 * Project Architecture
-* Environment Configuration
-* Swagger Documentation
-
-#### Day 2
-
-* Routers & API Versioning
+* API Routers
 * Pydantic Schemas
-* Authentication Endpoints
-
-#### Day 3
-
-* PostgreSQL Installation
-* pgAdmin Setup
-* Database Creation
-* SQLAlchemy Models
-* Database Configuration
-* ORM Fundamentals
-
----
-
-<details>
-<summary>🛠️ Current Learning Journey</summary>
-
-### Backend Engineering
-
-* FastAPI
-* API Design
-* Authentication
-* Database Management
-
-### Databases
-
 * PostgreSQL
 * SQLAlchemy ORM
-* Alembic Migrations
+* CRUD Operations
 
-### Upcoming
+### Week 3 — Authentication & Security 🚧
 
-* JWT Authentication
-* Docker
-* Machine Learning
-* Cloud Deployment
+#### Day 1 ✅
 
-</details>
+* Password Hashing (bcrypt)
+
+#### Day 2 ✅
+
+* JWT Token Creation
+* Authentication Flow
+
+#### Day 3 🚧
+
+* Token Decoding
+* get_current_user()
+
+#### Day 4 ⏳
+
+* Protected Routes
+
+#### Day 5 ⏳
+
+* User-Scoped Data
 
 ---
 
@@ -243,41 +227,44 @@ ML Integration          ░░░░░░░░░░   0%
 
 ### Completed
 
-* ✅ FastAPI Setup
-* ✅ Project Structure
-* ✅ PostgreSQL Setup
-* ✅ SQLAlchemy Models
-* ✅ Authentication APIs
+* ✅ User Registration
+* ✅ User Login
+* ✅ Password Hashing
+* ✅ JWT Token Generation
+* ✅ PostgreSQL Integration
+* ✅ SQLAlchemy ORM
+* ✅ Vital Tracking APIs
 * ✅ Swagger Documentation
+* ✅ Global Exception Handling
 
 ### In Progress
 
-* 🚧 Database Integration
-* 🚧 User Persistence
-* 🚧 Alembic Migrations
+* 🚧 User Authentication Middleware
+* 🚧 Current User Resolution
+* 🚧 Authorization Flow
 
-### Upcoming
+### Planned
 
-* ⏳ JWT Authentication
-* ⏳ Password Hashing
-* ⏳ Vital Tracking APIs
-* ⏳ Risk Prediction Engine
-* ⏳ Machine Learning Integration
-* ⏳ Cloud Deployment
+* ⏳ Health Risk Scoring
+* ⏳ Machine Learning Models
+* ⏳ Personalized Health Insights
+* ⏳ Docker Deployment
+* ⏳ Cloud Hosting
 
 ---
 
-## 🌱 What I'm Learning
+## 🌱 Key Concepts Learned
 
-Through VitalGuard, I'm actively learning:
-
-* Backend Engineering
-* API Development
-* Database Design
-* Software Architecture
+* FastAPI
+* REST APIs
+* PostgreSQL
 * SQLAlchemy ORM
-* Machine Learning Integration
-* Production-Ready Development Practices
+* JWT Authentication
+* Password Hashing
+* Dependency Injection
+* Pydantic Validation
+* Exception Handling
+* Backend Project Architecture
 
 ---
 
@@ -285,6 +272,8 @@ Through VitalGuard, I'm actively learning:
 
 ### 🌸 Built by Anagha Ghewari
 
-*"Learning by building, one commit at a time."* 🚀
+*"Learning backend engineering by building real-world systems one commit at a time."*
+
+🚀 FastAPI • PostgreSQL • JWT • AI/ML
 
 </div>
