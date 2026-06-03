@@ -4,7 +4,7 @@ from schemas.user import UserRegister, UserLogin, UserResponse, TokenResponse
 from sqlalchemy.orm import Session
 from db.session import get_db
 from models.user import User
-from core.security import hash_password, verify_password
+from core.security import hash_password, verify_password, create_token
 from sqlalchemy.exc import SQLAlchemyError
 
 #APIRouter is like a mini FastAPI app for one feature
@@ -49,6 +49,11 @@ def login (data: UserLogin, db:Session = Depends(get_db)):
             detail="Invalid Credentials"
         )
     #plain password check for now - bcrypt later
+
+    token = create_token(user_id = user.id)
+
+
+
     return {
         "access_token": "token",  # <- Real JWT
         "token_type":   "bearer",
