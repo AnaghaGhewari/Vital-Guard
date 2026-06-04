@@ -259,5 +259,4 @@ Cloud Deployment        ░░░░░░░░░░   0%
 **Learning Backend Engineering by Building Real Systems**
 
 🚀 FastAPI • PostgreSQL • JWT • AI/ML
-
 </div>
