@@ -16,6 +16,7 @@ def get_current_user(
 ) -> User:
     
 
+
     #Step 1 - decode the token
     payload = decode_token(token)
     if payload is None:

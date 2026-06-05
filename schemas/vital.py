@@ -29,7 +29,7 @@ class VitalResponse(BaseModel):
 
 class VitalListResponse(BaseModel):
     """returned for GET/vitals - paginated list"""
-    date:     list[VitalResponse]
+    data:     list[VitalResponse]
     total:    int
     page:     int
     has_next: bool
@@ -51,6 +51,6 @@ class RiskResponse(BaseModel):
     generated_at: datetime
 
     class Config:
-        from_attribute = True
+        from_attributes = True
 
 

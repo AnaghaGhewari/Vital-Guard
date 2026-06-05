@@ -1,6 +1,6 @@
 from passlib.context import CryptContext
 from jose import JWTError, jwt
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta, UTC
 from typing import Optional
 from core.config import settings
 
@@ -22,12 +22,12 @@ def verify_password(plain_password: str, hashed_password:str) ->  bool:
 #--------JWT token function--------
 def create_token(user_id: int)->str:
     """ Generate a JWT token for the given user_id"""
-    expire = datetime.utcnow()+ timedelta(days=settings.jwt_expire_days)
+    expire = datetime.now(UTC)+ timedelta(days=settings.jwt_expire_days)
 
     payload = {
         "sub": str(user_id),   #Subject -  who is this token for
         "exp": expire,         #Expiry - when the token will expire
-        "iat":datetime.utcnow()#issue at when token was created
+        "iat":datetime.now(UTC)#issue at when token was created
 
     }
 

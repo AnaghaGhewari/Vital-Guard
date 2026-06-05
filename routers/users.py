@@ -6,7 +6,7 @@ from db.session import get_db
 from models.user import User
 from core.dependencies import get_current_user
 
-routers = APIRouter(prefix="/api/v1/user/me", tags=["Users"])
+routers = APIRouter(prefix="/api/v1/user", tags=["Users"])
 #FAKE_USER Relpaced later
 
 

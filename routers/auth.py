@@ -6,6 +6,7 @@ from db.session import get_db
 from models.user import User
 from core.security import hash_password, verify_password, create_token
 from sqlalchemy.exc import SQLAlchemyError
+from fastapi.security import OAuth2PasswordRequestForm
 
 #APIRouter is like a mini FastAPI app for one feature
 # prefix   → added to every route in this file automatically
@@ -39,23 +40,22 @@ def register(data: UserRegister, db: Session = Depends(get_db)):
     
 
 
-@routers.post("/login" , response_model=TokenResponse)
-def login (data: UserLogin, db:Session = Depends(get_db)):
-    #Find user by  email
-    user = db.query(User).filter(User.email == data.email).first()
-    if not user or not verify_password(data.password, user.password):
-        raise HTTPException(
-            status_code= 401,
-            detail="Invalid Credentials"
-        )
-    #plain password check for now - bcrypt later
+@routers.post("/login", response_model=TokenResponse)
+def login(
+    form_data: OAuth2PasswordRequestForm = Depends(),  # ← replaces UserLogin
+    db: Session = Depends(get_db)
+):
+    # OAuth2PasswordRequestForm uses "username" field
+    # We treat username AS email — user types their email in the username box
+    user = db.query(User).filter(User.email == form_data.username).first()
 
-    token = create_token(user_id = user.id)
+    if not user or not verify_password(form_data.password, user.password):
+        raise HTTPException(status_code=401, detail="Invalid credentials")
 
-
+    token = create_token(user_id=user.id)
 
     return {
-        "access_token": "token",  # <- Real JWT
+        "access_token": token,
         "token_type":   "bearer",
         "user_id":      user.id
     }
