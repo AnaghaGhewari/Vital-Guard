@@ -4,8 +4,7 @@
 
 ### AI-Powered Health Risk Monitoring Backend
 
-#### Building a production-grade backend with FastAPI, PostgreSQL, JWT Authentication & Future ML Integration 🚀
-
+#### Building a production-grade backend with FastAPI, PostgreSQL, JWT Authentication, OAuth2 & AI-Driven Risk Analysis 🚀
 ![Python](https://img.shields.io/badge/Python-3.13-blue?style=for-the-badge\&logo=python)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-success?style=for-the-badge\&logo=fastapi)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue?style=for-the-badge\&logo=postgresql)
@@ -26,20 +25,32 @@ This project is being built as part of my Backend Engineering, AI/ML, and Cloud 
 
 ## ✨ Features Implemented
 
-### 🔐 Authentication
+### 🔐 Authentication & Security
 
 * User Registration
 * User Login
 * Password Hashing with bcrypt
 * JWT Token Generation
-* Secure Password Verification
+* JWT Token Validation
+* OAuth2 Authentication Flow
+* Protected Routes
+* Current User Authentication
+* User-Specific Access Control
 
 ### ❤️ Vital Monitoring
 
 * Create Vital Records
 * Retrieve Vital Records
 * Pagination Support
+* User-Scoped Health Data
 * PostgreSQL Data Storage
+
+### 📊 Risk Analysis
+
+* Risk Score Endpoint
+* Health Risk Evaluation
+* Risk Response Generation
+* Foundation for Future ML Predictions
 
 ### 🗄️ Database Layer
 
@@ -47,6 +58,7 @@ This project is being built as part of my Backend Engineering, AI/ML, and Cloud 
 * SQLAlchemy ORM
 * Database Sessions
 * Relational Data Models
+* Alembic Migration Setup
 
 ### 🛡️ API Reliability
 
@@ -54,34 +66,24 @@ This project is being built as part of my Backend Engineering, AI/ML, and Cloud 
 * Global Exception Handling
 * Structured Error Responses
 * Swagger Documentation
+* OAuth2 Authorization Support
 
 ---
 
 ## 🚧 Currently Working On
 
-### JWT Authentication Flow
+### AI-Powered Risk Prediction Engine
 
 * ✅ Password Hashing (bcrypt)
 * ✅ JWT Token Generation
-* 🚧 get_current_user()
-* 🚧 Route Protection
-* 🚧 User-Specific Data Access
-
----
-
-## 🛠️ Tech Stack
-
-| Layer          | Technology       |
-| -------------- | ---------------- |
-| Language       | Python           |
-| Backend        | FastAPI          |
-| Database       | PostgreSQL       |
-| ORM            | SQLAlchemy       |
-| Authentication | JWT              |
-| Security       | Passlib + bcrypt |
-| Validation     | Pydantic         |
-| Testing        | Swagger UI       |
-| Future ML      | Scikit-Learn     |
+* ✅ JWT Token Validation
+* ✅ get_current_user()
+* ✅ Route Protection
+* ✅ User-Specific Data Access
+* ✅ OAuth2 Swagger Integration
+* ✅ Risk Analysis API
+* 🚧 Machine Learning Risk Prediction
+* 🚧 Health Recommendation Engine
 
 ---
 
@@ -91,6 +93,10 @@ This project is being built as part of my Backend Engineering, AI/ML, and Cloud 
 vitalguard/
 │
 ├── main.py
+│
+├── alembic/
+│   ├── env.py
+│   └── versions/
 │
 ├── core/
 │   ├── config.py
@@ -112,52 +118,14 @@ vitalguard/
 ├── routers/
 │   ├── auth.py
 │   ├── users.py
-│   └── vitals.py
+│   ├── vitals.py
+│   └── risk.py
 │
 ├── requirements.txt
+├── alembic.ini
 ├── .env
 └── README.md
 ```
-
----
-
-## 🚀 Running The Project
-
-### Create Virtual Environment
-
-```bash
-python -m venv venv
-```
-
-### Activate Environment
-
-```bash
-venv\Scripts\activate
-```
-
-### Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### Start FastAPI Server
-
-```bash
-uvicorn main:app --reload
-```
-
----
-
-## 📘 API Documentation
-
-After starting the server:
-
-```text
-http://127.0.0.1:8000/docs
-```
-
-Use Swagger UI to test all APIs directly from the browser.
 
 ---
 
@@ -170,11 +138,13 @@ PostgreSQL Setup        ██████████ 100%
 SQLAlchemy ORM          ██████████ 100%
 Authentication APIs     ██████████ 100%
 Password Hashing        ██████████ 100%
-JWT Generation          ██████████ 100%
-Current User Logic      ███████░░░  70%
-Route Protection        █████░░░░░  50%
-User Scoped Data        ███░░░░░░░  30%
-ML Integration          ░░░░░░░░░░   0%
+JWT Authentication      ██████████ 100%
+Current User Logic      ██████████ 100%
+Route Protection        ██████████ 100%
+User Scoped Data        ██████████ 100%
+Risk Analysis API       ██████████ 100%
+Alembic Setup           ██████████ 100%
+ML Integration          █░░░░░░░░░  10%
 Cloud Deployment        ░░░░░░░░░░   0%
 ```
 
@@ -200,7 +170,7 @@ Cloud Deployment        ░░░░░░░░░░   0%
 * SQLAlchemy
 * CRUD Operations
 
-### Week 3 — Authentication & Security 🚧
+### Week 3 — Authentication & Security ✅
 
 #### Day 1 ✅
 
@@ -210,30 +180,35 @@ Cloud Deployment        ░░░░░░░░░░   0%
 
 * JWT Token Creation
 
-#### Day 3 🚧
+#### Day 3 ✅
 
 * Token Decoding
 * get_current_user()
 
-#### Day 4 🚧
+#### Day 4 ✅
 
 * Protected Routes
+* OAuth2 Authentication
 
-#### Day 5 🚧
+#### Day 5 ✅
 
 * User-Specific Data Access
+* JWT Authorization Flow
+* Swagger OAuth Integration
 
----
+### Week 4 — Risk Analysis 🚧
 
-## 🎯 Future Roadmap
+#### Completed ✅
 
-* Health Risk Prediction Engine
-* Machine Learning Integration
-* Risk Scoring System
-* Personalized Health Insights
-* Docker Support
-* Cloud Deployment
-* CI/CD Pipeline
+* Risk API Route
+* Health Risk Scoring Logic
+* Protected Risk Endpoints
+
+#### Next 🚧
+
+* Machine Learning Model Integration
+* Personalized Risk Predictions
+* Explainable AI Responses
 
 ---
 
@@ -243,14 +218,19 @@ Cloud Deployment        ░░░░░░░░░░   0%
 * PostgreSQL
 * SQLAlchemy
 * JWT Authentication
+* OAuth2
 * Password Hashing
 * Dependency Injection
+* User Authorization
+* Route Protection
+* Alembic Migrations
 * Pydantic Validation
 * Exception Handling
 * API Design
 * Backend Architecture
 
----
+```
+```
 
 <div align="center">
 
