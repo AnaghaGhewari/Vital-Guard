@@ -53,7 +53,7 @@ class RiskResponse(BaseModel):
     risk_score: float = Field(..., ge=0.0, le=1.0)
     level:      str
     top_factor: list[str]
-    explaination: str
+    explanation: str
     generated_at: datetime
 
     class Config:

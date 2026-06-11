@@ -5,9 +5,10 @@ from typing import Optional
 
 #-------Model paths-------
 
-BASE_DIR     = Path(__file__).parent.parent
-MODEL_PATH   = BASE_DIR/"ml_models"/"risk_model.joblib"
-SCALER_PATH  = BASE_DIR/"ml_models"/"scaler.joblib"
+BASE_DIR = Path(__file__).parent.parent
+
+MODEL_PATH = BASE_DIR / "notebooks" / "ml_models" / "risk_model.joblib"
+SCALER_PATH = BASE_DIR / "notebooks" / "ml_models" / "scaler.joblib"
 
 #-------Load once at module import time--------
 #This runs when FastAPI starts - not on every request
@@ -30,10 +31,12 @@ DEFAULTS = {
 }
 
 
-def get_risk_level(score: float) -> Optional[str]:
-    if score >= 0.6 : return "high"
-    elif score >= 0.3: return "medium"
-    else: return "low"
+def get_risk_level(score: float) -> str:
+    if score >= 0.6 :
+        return "high"
+    elif score >= 0.3: 
+        return "medium"
+    return "low"
 
 def predict(
         glucose:          Optional[float] = None,
@@ -48,7 +51,7 @@ def predict(
             "risk_score":      0.0,
             "level":           "unavailable",
             "top_factor":      [],
-            "used_sefaults":   True
+            "used_defaults":   True
 
         }
     
@@ -67,7 +70,7 @@ def predict(
     if age                is None: missing.append("age")
 
     #Bulid features array -  order must match  training: glucose, bp, bmi, age
-    features  = np.array([g, bp, b, a])
+    features  = np.array([[g, bp, b, a]])
     scaled   = _scaler.transform(features)
     score    = float(_model.predict_proba(scaled)[0][1])
     level    = get_risk_level(score)
