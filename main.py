@@ -11,6 +11,7 @@ from core.exception import (
     validation_exception_handler,
     generic_exception_handler
 )
+from services import risk_engine 
 
 
 
@@ -62,6 +63,7 @@ app.include_router(risk.router)
 def root():
     return{
         "app": settings.app_name,
+        
         "version": settings.version,
         "docs":"/docs"
     }
