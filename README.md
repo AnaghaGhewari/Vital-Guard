@@ -88,7 +88,9 @@ This project is being built as part of my Backend Engineering, AI/ML, and Cloud 
 * ✅ User-Scoped Data Isolation
 * ✅ Risk Analysis API
 * ✅ Alembic Migration Setup
-* 🚧 Machine Learning Integration
+* ✅ Machine Learning Model Training
+* ✅ Model Serialization
+* ✅ ML-Powered Risk Prediction API
 
 ---
 
@@ -101,39 +103,46 @@ This project is being built as part of my Backend Engineering, AI/ML, and Cloud 
 ### Completed
 
 * Dataset Added
-* Training Pipeline Created (`train_model.py`)
-* Feature Selection Strategy
-* Data Cleaning Logic
-* Train/Test Split Setup
-* Feature Scaling Setup
-* Random Forest Configuration
-
-### In Progress
-
-* Model Training
+* Data Cleaning Pipeline
+* Feature Selection
+* Train/Test Split
+* Feature Scaling using StandardScaler
+* Random Forest Model Training
 * Model Evaluation
 * Feature Importance Analysis
-* Model Serialization
-* FastAPI Integration
-* Risk Prediction Endpoint
+* Model Serialization with Joblib
+* Risk Engine Service Layer
+* FastAPI Model Integration
+* Real-Time Risk Prediction Endpoint
 
----
+### Model Features
 
-## 🛠️ Tech Stack
+The model currently uses:
 
-| Layer            | Technology       |
-| ---------------- | ---------------- |
-| Language         | Python           |
-| Backend          | FastAPI          |
-| Database         | PostgreSQL       |
-| ORM              | SQLAlchemy       |
-| Authentication   | JWT              |
-| Authorization    | OAuth2           |
-| Security         | Passlib + bcrypt |
-| Validation       | Pydantic         |
-| Migrations       | Alembic          |
-| Testing          | Swagger UI       |
-| Machine Learning | Scikit-Learn     |
+* Glucose
+* Blood Pressure
+* BMI
+* Age
+
+to predict diabetes risk probability.
+
+### Prediction Workflow
+
+```text
+User Health Data
+        ↓
+Data Validation
+        ↓
+Feature Scaling
+        ↓
+Random Forest Model
+        ↓
+Risk Probability
+        ↓
+Risk Classification
+        ↓
+API Response
+```
 
 ---
 
@@ -171,9 +180,16 @@ vitalguard/
 │   ├── vitals.py
 │   └── risk.py
 │
+├── services/
+│   └── risk_engine.py
+│
 ├── notebooks/
-│   ├── datasets/
+│   ├── dataset/
 │   │   └── diabetes.csv
+│   │
+│   ├── ml_models/
+│   │   ├── risk_model.joblib
+│   │   └── scaler.joblib
 │   │
 │   └── train_model.py
 │
@@ -182,79 +198,6 @@ vitalguard/
 ├── .env
 └── README.md
 ```
-
----
-
-## 🔗 Implemented API Routes
-
-### Authentication
-
-```http
-POST /api/v1/auth/register
-POST /api/v1/auth/login
-```
-
-### User
-
-```http
-GET  /api/v1/user/me
-PUT  /api/v1/user/me
-```
-
-### Vitals
-
-```http
-POST   /api/v1/vitals
-GET    /api/v1/vitals
-GET    /api/v1/vitals/{id}
-DELETE /api/v1/vitals/{id}
-```
-
-### Risk
-
-```http
-GET /api/v1/risk/score
-```
-
----
-
-## 🚀 Running The Project
-
-### Create Virtual Environment
-
-```bash
-python -m venv venv
-```
-
-### Activate Environment
-
-```bash
-venv\Scripts\activate
-```
-
-### Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### Start FastAPI Server
-
-```bash
-uvicorn main:app --reload
-```
-
----
-
-## 📘 API Documentation
-
-After starting the server:
-
-```text
-http://127.0.0.1:8000/docs
-```
-
-Swagger UI provides interactive testing for all endpoints.
 
 ---
 
@@ -276,12 +219,13 @@ Risk Analysis API       ██████████ 100%
 Alembic Setup           ██████████ 100%
 
 ML Dataset Setup        ██████████ 100%
-Training Pipeline       ██████████ 100%
 Data Cleaning           ██████████ 100%
-Feature Engineering     ███████░░░  70%
-Model Training          ███░░░░░░░  30%
-Model Evaluation        ░░░░░░░░░░   0%
-FastAPI ML Integration  ░░░░░░░░░░   0%
+Feature Engineering     ██████████ 100%
+Model Training          ██████████ 100%
+Model Evaluation        ██████████ 100%
+Model Serialization     ██████████ 100%
+Risk Engine Service     ██████████ 100%
+FastAPI ML Integration  ██████████ 100%
 
 Cloud Deployment        ░░░░░░░░░░   0%
 Frontend Development    ░░░░░░░░░░   0%
@@ -289,120 +233,34 @@ Frontend Development    ░░░░░░░░░░   0%
 
 ---
 
-## 📝 Learning Journey
-
-### Week 1 — Backend Foundations ✅
-
-* REST APIs
-* JSON Handling
-* HTTP Methods
-* Decorators
-* Exception Handling
-* Git & GitHub
-
-### Week 2 — FastAPI & Databases ✅
-
-* FastAPI Architecture
-* Routers
-* Schemas
-* PostgreSQL
-* SQLAlchemy
-* CRUD Operations
-
-### Week 3 — Authentication & Security ✅
-
-#### Day 1
-
-* Password Hashing (bcrypt)
-
-#### Day 2
-
-* JWT Token Creation
-
-#### Day 3
-
-* Token Decoding
-* get_current_user()
-
-#### Day 4
-
-* Protected Routes
-* OAuth2 Authentication
-
-#### Day 5
-
-* User-Specific Data Access
-* JWT Authorization Flow
-* Swagger OAuth Integration
-
-### Week 4 — Risk Analysis & Machine Learning 🚧
+### Week 4 — Risk Analysis & Machine Learning ✅
 
 #### Completed
 
 * Risk Route Implementation
 * Risk Response Schemas
 * PIMA Diabetes Dataset Integration
-* ML Training Pipeline Setup
-
-#### In Progress
-
-* Model Training
+* Data Cleaning Pipeline
+* Random Forest Model Training
+* Feature Scaling
 * Model Evaluation
+* Model Serialization using Joblib
+* Risk Engine Service Layer
 * FastAPI Model Integration
-* AI-Powered Risk Prediction
+* Real-Time Risk Prediction API
 
----
+#### Next
 
-## 🎯 Future Roadmap
-
-### Backend
-
-* Health Trend Analytics
-* Advanced Risk Engine
-* Notifications & Alerts
-* Role-Based Access Control
-
-### AI / ML
-
-* Diabetes Risk Prediction
-* Personalized Health Insights
+* Personalized Health Recommendations
 * Explainable AI Responses
-* Recommendation Engine
+* Prediction History Tracking
+* Cloud Deployment
 
-### DevOps & Cloud
-
-* Docker
-* CI/CD Pipeline
-* AWS Deployment
-* Monitoring & Logging
-
----
-
-## 🌱 Key Concepts Learned
-
-* FastAPI
-* PostgreSQL
-* SQLAlchemy
-* JWT Authentication
-* OAuth2
-* Password Hashing
-* Dependency Injection
-* User Authorization
-* Route Protection
-* Alembic Migrations
-* Pydantic Validation
-* Exception Handling
-* API Design
-* Backend Architecture
-
----
-
-<div align="center">
+```
 
 ### 🌸 Built by Anagha Ghewari
 
 **Learning Backend Engineering, AI/ML & Cloud Computing by Building Real Systems**
 
-🚀 FastAPI • PostgreSQL • JWT • OAuth2 • Scikit-Learn
-
-</div>
+🚀 FastAPI • PostgreSQL • JWT • OAuth2 • Scikit-Learn • Random Forest
+```
