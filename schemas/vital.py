@@ -13,10 +13,10 @@ class VitalCreate(BaseModel):
     notes: Optional[str] = Field(None, max_length = 300)
 
     #Few new fields that are present in the ML model
-    glucose:          Optional[str]=Field(None, ge=0, le=300, description="Blood glucose mg/dL")
-    blood_pressure:   Optional[str]=Field(None, ge=0, le=200, description="Diastolic BP mmHg")
-    bmi:              Optional[str]=Field(None, ge=0, le=80, description="Body mass index")
-    age:              Optional[str]=Field(None, ge=1, le=120, description="Age in years")
+    glucose:          Optional[float]=Field(None, ge=0, le=300, description="Blood glucose mg/dL")
+    blood_pressure:   Optional[float]=Field(None, ge=0, le=200, description="Diastolic BP mmHg")
+    bmi:              Optional[float]=Field(None, ge=0, le=80, description="Body mass index")
+    age:              Optional[float]=Field(None, ge=1, le=120, description="Age in years")
 
 #---------------RESPONSE SCHEMAS---------------
 
@@ -52,7 +52,7 @@ class RiskResponse(BaseModel):
     user_id:    int
     risk_score: float = Field(..., ge=0.0, le=1.0)
     level:      str
-    top_factor: list[str]
+    top_factors: list[str]
     explanation: str
     generated_at: datetime
 
