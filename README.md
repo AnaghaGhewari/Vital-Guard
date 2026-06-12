@@ -4,12 +4,13 @@
 
 ### AI-Powered Health Risk Monitoring Backend
 
-#### Building a production-grade backend with FastAPI, PostgreSQL, JWT Authentication, OAuth2 & AI-Driven Risk Analysis 🚀
+#### Building a Production-Grade Backend with FastAPI, PostgreSQL, JWT Authentication, OAuth2 & Machine Learning 🚀
 
 ![Python](https://img.shields.io/badge/Python-3.13-blue?style=for-the-badge\&logo=python)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-success?style=for-the-badge\&logo=fastapi)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue?style=for-the-badge\&logo=postgresql)
 ![JWT](https://img.shields.io/badge/JWT-Authentication-orange?style=for-the-badge)
+![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-ML_Model-yellow?style=for-the-badge\&logo=scikitlearn)
 ![Status](https://img.shields.io/badge/Status-Active%20Development-brightgreen?style=for-the-badge)
 
 </div>
@@ -18,7 +19,7 @@
 
 ## 🌟 Overview
 
-VitalGuard is an AI-powered health monitoring platform designed to securely collect health vitals, manage user data, and serve as the foundation for future machine learning-based health risk prediction.
+VitalGuard is an AI-powered health monitoring platform designed to securely collect health data, manage user accounts, and provide personalized chronic disease risk predictions using Machine Learning.
 
 This project is being built as part of my Backend Engineering, AI/ML, and Cloud Computing learning journey.
 
@@ -38,7 +39,7 @@ This project is being built as part of my Backend Engineering, AI/ML, and Cloud 
 * Current User Authentication
 * User-Specific Access Control
 
-### ❤️ Vital Monitoring
+### ❤️ Health Monitoring
 
 * Create Vital Records
 * Retrieve Vital Records
@@ -46,18 +47,26 @@ This project is being built as part of my Backend Engineering, AI/ML, and Cloud 
 * User-Scoped Health Data
 * PostgreSQL Data Storage
 
-### 👤 User Management
+### 🤖 Machine Learning
 
-* Get Current User Profile
-* Update Current User Profile
-* Active User Validation
+* PIMA Indians Diabetes Dataset
+* Data Cleaning Pipeline
+* Feature Engineering
+* StandardScaler Integration
+* Random Forest Classifier
+* Model Evaluation
+* Feature Importance Analysis
+* Model Serialization using Joblib
+* ML Risk Prediction Service
+* Real-Time Prediction API
 
 ### 📊 Risk Analysis
 
 * Risk Score Endpoint
-* Health Risk Evaluation
-* Risk Response Generation
-* Foundation for Future ML Predictions
+* Personalized Risk Assessment
+* Risk Level Classification
+* Explanation Generation
+* Risk History Foundation
 
 ### 🗄️ Database Layer
 
@@ -65,7 +74,7 @@ This project is being built as part of my Backend Engineering, AI/ML, and Cloud 
 * SQLAlchemy ORM
 * Database Sessions
 * Relational Data Models
-* Alembic Migration Setup
+* Alembic Migration Support
 
 ### 🛡️ API Reliability
 
@@ -77,71 +86,43 @@ This project is being built as part of my Backend Engineering, AI/ML, and Cloud 
 
 ---
 
-## 🚀 Current Milestones
-
-* ✅ FastAPI Backend Architecture
-* ✅ PostgreSQL Integration
-* ✅ SQLAlchemy ORM
-* ✅ JWT Authentication
-* ✅ OAuth2 Authorization
-* ✅ Protected Routes
-* ✅ User-Scoped Data Isolation
-* ✅ Risk Analysis API
-* ✅ Alembic Migration Setup
-* ✅ Machine Learning Model Training
-* ✅ Model Serialization
-* ✅ ML-Powered Risk Prediction API
-
----
-
-## 🤖 AI / ML Integration
+## 🤖 Machine Learning Pipeline
 
 ### Dataset
 
-* PIMA Indians Diabetes Dataset
+PIMA Indians Diabetes Dataset
 
-### Completed
-
-* Dataset Added
-* Data Cleaning Pipeline
-* Feature Selection
-* Train/Test Split
-* Feature Scaling using StandardScaler
-* Random Forest Model Training
-* Model Evaluation
-* Feature Importance Analysis
-* Model Serialization with Joblib
-* Risk Engine Service Layer
-* FastAPI Model Integration
-* Real-Time Risk Prediction Endpoint
-
-### Model Features
-
-The model currently uses:
+### Features Used
 
 * Glucose
 * Blood Pressure
 * BMI
 * Age
 
-to predict diabetes risk probability.
-
-### Prediction Workflow
+### ML Workflow
 
 ```text
-User Health Data
-        ↓
-Data Validation
-        ↓
+Dataset
+   ↓
+Data Cleaning
+   ↓
+Feature Selection
+   ↓
+Train/Test Split
+   ↓
 Feature Scaling
-        ↓
-Random Forest Model
-        ↓
-Risk Probability
-        ↓
-Risk Classification
-        ↓
-API Response
+   ↓
+Random Forest Training
+   ↓
+Model Evaluation
+   ↓
+Model Serialization
+   ↓
+Risk Engine Service
+   ↓
+FastAPI Integration
+   ↓
+Prediction API
 ```
 
 ---
@@ -168,7 +149,8 @@ vitalguard/
 │
 ├── models/
 │   ├── user.py
-│   └── vital.py
+│   ├── vital.py
+│   └── risk.py
 │
 ├── schemas/
 │   ├── user.py
@@ -209,58 +191,94 @@ FastAPI Setup           ██████████ 100%
 PostgreSQL Setup        ██████████ 100%
 SQLAlchemy ORM          ██████████ 100%
 Authentication APIs     ██████████ 100%
-Password Hashing        ██████████ 100%
 JWT Authentication      ██████████ 100%
 OAuth2 Integration      ██████████ 100%
-Current User Logic      ██████████ 100%
 Route Protection        ██████████ 100%
 User Scoped Data        ██████████ 100%
 Risk Analysis API       ██████████ 100%
 Alembic Setup           ██████████ 100%
 
-ML Dataset Setup        ██████████ 100%
+Dataset Integration     ██████████ 100%
 Data Cleaning           ██████████ 100%
 Feature Engineering     ██████████ 100%
 Model Training          ██████████ 100%
 Model Evaluation        ██████████ 100%
 Model Serialization     ██████████ 100%
 Risk Engine Service     ██████████ 100%
-FastAPI ML Integration  ██████████ 100%
+ML API Integration      ██████████ 100%
 
+Prediction History      ███░░░░░░░  30%
+SHAP Explainability     ███░░░░░░░  30%
 Cloud Deployment        ░░░░░░░░░░   0%
 Frontend Development    ░░░░░░░░░░   0%
 ```
 
 ---
 
-### Week 4 — Risk Analysis & Machine Learning ✅
+## 🎯 Current API Endpoints
 
-#### Completed
+### Authentication
 
-* Risk Route Implementation
-* Risk Response Schemas
-* PIMA Diabetes Dataset Integration
-* Data Cleaning Pipeline
-* Random Forest Model Training
-* Feature Scaling
-* Model Evaluation
-* Model Serialization using Joblib
-* Risk Engine Service Layer
-* FastAPI Model Integration
-* Real-Time Risk Prediction API
+* POST `/api/v1/auth/register`
+* POST `/api/v1/auth/login`
 
-#### Next
+### Users
 
+* GET `/api/v1/user/me`
+* PUT `/api/v1/user/me`
+
+### Vitals
+
+* POST `/api/v1/vitals`
+* GET `/api/v1/vitals`
+* GET `/api/v1/vitals/{id}`
+* DELETE `/api/v1/vitals/{id}`
+
+### Risk Analysis
+
+* GET `/api/v1/risk/score`
+* GET `/api/v1/risk/history`
+
+---
+
+## 🎯 Future Roadmap
+
+* SHAP Explainability
 * Personalized Health Recommendations
-* Explainable AI Responses
-* Prediction History Tracking
+* Risk Trend Analytics
+* Docker Containerization
+* CI/CD Pipeline
 * Cloud Deployment
+* React Frontend
+* Real-Time Health Monitoring
 
-```
+---
+
+## 🌱 Key Concepts Learned
+
+* FastAPI
+* PostgreSQL
+* SQLAlchemy
+* JWT Authentication
+* OAuth2
+* Alembic
+* Dependency Injection
+* API Design
+* Machine Learning Pipelines
+* Feature Engineering
+* Random Forest Models
+* Model Serialization
+* ML Deployment
+* Backend Architecture
+
+---
+
+<div align="center">
 
 ### 🌸 Built by Anagha Ghewari
 
 **Learning Backend Engineering, AI/ML & Cloud Computing by Building Real Systems**
 
 🚀 FastAPI • PostgreSQL • JWT • OAuth2 • Scikit-Learn • Random Forest
-```
+
+</div>
