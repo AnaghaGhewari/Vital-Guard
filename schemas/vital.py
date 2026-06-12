@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field
 from datetime import datetime
 from typing import Optional
+from typing import Dict
 
 
 #---------------REQUEST SCHEMAS---------------
@@ -53,6 +54,7 @@ class RiskResponse(BaseModel):
     risk_score: float = Field(..., ge=0.0, le=1.0)
     level:      str
     top_factors: list[str]
+    shap_explanation: Dict[str, float] = {}
     explanation: str
     generated_at: datetime
 
