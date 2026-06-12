@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from core.config import settings
-from routers import auth, vitals, users, risk
+from routers import auth, risk_score, vitals, users
 from db.session import engine, Base
 from models import user, vital, risk
 from fastapi.exceptions import RequestValidationError
@@ -56,7 +56,7 @@ app.add_middleware(
 app.include_router(auth.routers)
 app.include_router(users.routers)
 app.include_router(vitals.routers)
-app.include_router(risk.router)
+app.include_router(risk_score.router)
 
 #------Root and health
 @app.get("/")
