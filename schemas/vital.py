@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 from datetime import datetime
 from typing import Optional
-from typing import Dict
+from typing import Dict, List
 
 
 #---------------REQUEST SCHEMAS---------------
@@ -60,5 +60,23 @@ class RiskResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+class RiskHistoryItem(BaseModel):
+    id:         int
+    risk_score: float
+    level:      str
+    top_factor: List[str]
+    explanation:str
+    generated_at:datetime
+
+    class Config:
+        from_attribute = True
+
+
+class RiskHistoryResponse(BaseModel):
+    data:    List[RiskHistoryItem]
+    total:   int
+    trend:   str
+
 
 

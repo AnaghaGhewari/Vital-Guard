@@ -2,7 +2,7 @@ from datetime import datetime
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-
+from sqlalchemy.exc import SQLAlchemyError
 from db.session import get_db
 from models.user import User
 from models.vital import Vital
