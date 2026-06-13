@@ -48,6 +48,7 @@ def get_risk_score(
         bmi=latest.bmi,
         age=latest.age
     )
+    print("RESULT =", result)
 
     try:
         record = RiskScore(

@@ -19,10 +19,13 @@ FEATURES = ["glucose", "blood_pressure","bmi","age"]
 try:
     _model = joblib.load(MODEL_PATH)
     _scaler= joblib.load(SCALER_PATH)
+    _explainer = shap.TreeExplainer(_model)
+
     print("Risk model loaded successfilly")
 except FileNotFoundError:
     _model = None
     _scaler= None
+    _explainer = None
     print("Risk model not found - run notebooks/train_model.py first")
 
 #--------Default value when user hasn't provided a field
@@ -78,13 +81,15 @@ def predict(
     """Run risk prediction. Missing values use dataset median"""
 
     if _model is None:
-        return{
-            "risk_score":      0.0,
-            "level":           "unavailable",
-            "top_factor":      [],
-            "used_defaults":   True
-
-        }
+        return {
+    "risk_score": 0.0,
+    "level": "unavailable",
+    "top_factors": [],
+    "shap_explanation": {},
+    "explanation": "Model unavailable",
+    "used_defaults": True,
+    "missing_fields": []
+}
     
     #Use provided values or fall back to defaults
 
@@ -107,34 +112,70 @@ def predict(
     level    = get_risk_level(score)
 
 
-    #-----SHAP values------
-    shap_values = _explainer.shap_values(scales)
-    #shap_values[1] = values for class 1 (high risk)
-    shap_arr = shap_values[1][0] if isinstance(shap_values, list) \
-               else shap_values[0]
-    shap_dict = {
-        feat: round(float(val),4)
-        for feat, val in zip(FEATURES, shap_arr)
-    }
+        # ----- SHAP values -----
+
+    print("Reached SHAP section")
+
+    try:
+        shap_values = _explainer.shap_values(scaled)
+
+        print("SHAP TYPE:", type(shap_values))
+
+        if isinstance(shap_values, list):
+            shap_arr = np.array(shap_values[1][0])
+
+        else:
+            shap_arr = np.array(shap_values)
+
+            print("SHAP SHAPE:", shap_arr.shape)
+
+            if shap_arr.ndim == 3:
+                shap_arr = shap_arr[0, :, 1]
+
+            elif shap_arr.ndim == 2:
+                shap_arr = shap_arr[0]
+
+        shap_arr = np.ravel(shap_arr)
+
+        print("FINAL SHAP ARRAY:", shap_arr)
+
+        shap_dict = {
+            feat: round(float(val), 4)
+            for feat, val in zip(FEATURES, shap_arr)
+        }
+
+    except Exception as e:
+        print("SHAP ERROR:", e)
+
+        shap_dict = {
+            "glucose": 0.0,
+            "blood_pressure": 0.0,
+            "bmi": 0.0,
+            "age": 0.0
+        }
 
     top_factors = [
         f for f, v in
         sorted(shap_dict.items(), key=lambda x: -x[1])
         if v > 0
     ]
+
     if not top_factors:
         top_factors = ["all values within normal range"]
 
     explanation = _build_shap_explanation(shap_dict)
-    if missing:
-        explanation += f" (Note: {', '.join(missing)} used population averages.)"
 
-    
+    if missing:
+        explanation += (
+            f" (Note: {', '.join(missing)} used population averages.)"
+        )
+
     return {
-        "risk_score":   round(score, 3),
-        "level":        level,
-        "top_factors":  top_factors,
+        "risk_score": round(score, 3),
+        "level": level,
+        "top_factors": top_factors,
+        "shap_explanation": shap_dict,
+        "explanation": explanation,
         "used_defaults": len(missing) > 0,
         "missing_fields": missing
     }
-

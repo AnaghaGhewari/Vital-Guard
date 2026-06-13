@@ -65,12 +65,12 @@ class RiskHistoryItem(BaseModel):
     id:         int
     risk_score: float
     level:      str
-    top_factor: List[str]
+    top_factors: List[str]
     explanation:str
     generated_at:datetime
 
     class Config:
-        from_attribute = True
+        from_attributes = True
 
 
 class RiskHistoryResponse(BaseModel):

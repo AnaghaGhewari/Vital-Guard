@@ -3,6 +3,7 @@ from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from typing import Optional
+import traceback
 
 #Every message in the vitalguard has this exact shape 
 def error_response(status_code: int, message: str, details: Optional[list] = None):
@@ -35,10 +36,13 @@ async def validation_exception_handler(request: Request, exc:RequestValidationEr
     return error_response(422, "Validation failed", details)
 
 #Handler 3 - catches any unexpected crash(500)
-async def generic_exception_handler(request: Request, exc:Exception):
-    return error_response(500, "Something went wrong on our end")
+async def generic_exception_handler(request: Request, exc: Exception):
+    traceback.print_exc()
 
-
+    return error_response(
+        500,
+        f"{type(exc).__name__}: {str(exc)}"
+    )
 
 
     
