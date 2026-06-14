@@ -1,8 +1,8 @@
 function DashboardPage() {
   return (
     <main>
-      <h1>Dashboard Page</h1>
-      <p>Risk score and health insights will be shown here later.</p>
+      <h1>Dashboard</h1>
+      <p>You are logged in. Dashboard features will be added later.</p>
     </main>
   )
 }

@@ -1,8 +1,8 @@
 function AddVitalsPage() {
   return (
     <main>
-      <h1>Add Vitals Page</h1>
-      <p>Vital record entry form will be added here later.</p>
+      <h1>Add Vitals</h1>
+      <p>This protected page is ready. Vitals features will be added later.</p>
     </main>
   )
 }

@@ -1,10 +1,12 @@
 import axios from 'axios'
 
 export const AUTH_TOKEN_STORAGE_KEY = 'vitalguard.authToken'
+export const AUTH_USER_ID_STORAGE_KEY = 'vitalguard.authUserId'
 
 const client = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL ?? '',
+  baseURL: import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000',
   headers: {
+    Accept: 'application/json',
     'Content-Type': 'application/json',
   },
 })

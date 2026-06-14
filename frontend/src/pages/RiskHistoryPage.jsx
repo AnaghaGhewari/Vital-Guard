@@ -1,8 +1,8 @@
 function RiskHistoryPage() {
   return (
     <main>
-      <h1>Risk History Page</h1>
-      <p>Historical risk records will be shown here later.</p>
+      <h1>Risk History</h1>
+      <p>This protected page is ready. Risk history features will be added later.</p>
     </main>
   )
 }

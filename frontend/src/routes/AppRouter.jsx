@@ -7,6 +7,7 @@ import {
   RouterProvider,
 } from 'react-router-dom'
 import ProtectedRoute from '../components/ProtectedRoute.jsx'
+import ProtectedLayout from '../components/ProtectedLayout.jsx'
 import { useAuth } from '../context/AuthContext.jsx'
 import AddVitalsPage from '../pages/AddVitalsPage.jsx'
 import DashboardPage from '../pages/DashboardPage.jsx'
@@ -41,9 +42,11 @@ const router = createBrowserRouter(
       </Route>
 
       <Route element={<ProtectedRoute />}>
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/add-vitals" element={<AddVitalsPage />} />
-        <Route path="/risk-history" element={<RiskHistoryPage />} />
+        <Route element={<ProtectedLayout />}>
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/add-vitals" element={<AddVitalsPage />} />
+          <Route path="/risk-history" element={<RiskHistoryPage />} />
+        </Route>
       </Route>
 
       <Route path="*" element={<RootRedirect />} />
