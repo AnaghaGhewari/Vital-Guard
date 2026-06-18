@@ -61,8 +61,20 @@
   margin-top: 0;
 }
 
-.risk-overview__value {
-  text-transform: capitalize;
+.trend-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-top: 0.5px;
+  margin-bottom: 15px;
+}
+
+.trend-pill--stable {
+  background: rgba(220, 252, 231, 0.9);
+  color: #15803d;
 }
 
 @media (max-width: 768px) {
@@ -83,3 +95,40 @@
     width: 100%;
   }
 }
+
+.history-card .dashboard-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.history-card {
+  padding-bottom: 20px;
+}
+
+.history-card__header {
+  margin-bottom: 8px;
+}
+
+.history-card__explanation {
+  margin-top: 8px;
+}
+
+.factor-badges {
+  margin-top: 0;
+}
+
+.history-card {
+  min-height: auto !important;
+}
+
+.history-card .dashboard-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.history-card__header {
+  margin-bottom: 0;
+}
+

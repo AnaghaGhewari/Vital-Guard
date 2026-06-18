@@ -96,7 +96,7 @@ function RiskHistoryPage() {
         </div>
 
         <div className="dashboard-page__hero-badge dashboard-page__hero-badge--neutral">
-          {total} Assessments
+          {total} Risk Assessments
         </div>
       </section>
 
@@ -138,12 +138,11 @@ function RiskHistoryPage() {
             >
               <div className="risk-overview">
                 <div>
-                  <p className="risk-overview__value">
-                    {trend}
-                  </p>
-
+                  <div className="trend-pill trend-pill--stable">
+                     Stable
+                  </div>
                   <p className="risk-overview__caption">
-                    Current trend
+                    Your risk level has remained consistant across recent assessments.
                   </p>
                 </div>
               </div>
@@ -158,6 +157,14 @@ function RiskHistoryPage() {
                 <p className="metadata-block__value">
                   {total}
                 </p>
+
+                <p className= "metadata-block__label">
+                  Assessments Logged
+                </p>
+
+                <p className="dashboard-card__subtitle">
+                  Track how your health risk evolves over time.
+                </p>
               </div>
             </DashboardCard>
           </section>
@@ -170,7 +177,7 @@ function RiskHistoryPage() {
                 <DashboardCard
                   key={item.id}
                   className="history-card"
-                  title={`Assessment #${item.id}`}
+                  title="Risk Assessment"
                   subtitle={formatGeneratedAt(item.generated_at)}
                 >
                   <div className="history-card__header">
@@ -187,7 +194,7 @@ function RiskHistoryPage() {
                     <div
                       className={`risk-level-pill risk-level-pill--${riskTone}`}
                     >
-                      {String(item.level).toUpperCase()}
+                      {String(item.level).toUpperCase()} RISK
                     </div>
                   </div>
 
