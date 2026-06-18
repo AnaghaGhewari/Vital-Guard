@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import client from '../api/client.js'
 import { useAuth } from '../context/AuthContext.jsx'
 import { getApiErrorMessage } from '../utils/authErrors.js'
+import './LoginPage.css'
 
 function validateLoginForm(formData) {
   const errors = {}
@@ -88,16 +89,43 @@ function LoginPage() {
   }
 
   return (
-    <main>
-      <h1>Login</h1>
-      <p>Sign in to access your VitalGuard account.</p>
+  <main className="login-page">
+    <section className="login-card">
+      <div className="login-brand">
+        <p className="login-brand__eyebrow">
+          AI Health Monitoring
+        </p>
 
-      {successMessage ? <p>{successMessage}</p> : null}
-      {errorMessage ? <p role="alert">{errorMessage}</p> : null}
+        <h1 className="login-brand__title">
+          VitalGuard
+        </h1>
 
-      <form onSubmit={handleSubmit} noValidate>
-        <div>
-          <label htmlFor="email">Email</label>
+        <p className="login-brand__subtitle">
+          Sign in to access your health dashboard,
+          risk predictions and monitoring history.
+        </p>
+      </div>
+
+      {successMessage ? (
+        <div className="login-success">
+          {successMessage}
+        </div>
+      ) : null}
+
+      {errorMessage ? (
+        <div className="login-error" role="alert">
+          {errorMessage}
+        </div>
+      ) : null}
+
+      <form
+        className="login-form"
+        onSubmit={handleSubmit}
+        noValidate
+      >
+        <div className="login-field">
+          <label htmlFor="email">Email Address</label>
+
           <input
             id="email"
             name="email"
@@ -106,12 +134,19 @@ function LoginPage() {
             value={formData.email}
             onChange={handleChange}
             disabled={isSubmitting}
+            placeholder="Enter your email"
           />
-          {errors.email ? <p role="alert">{errors.email}</p> : null}
+
+          {errors.email ? (
+            <p className="login-validation">
+              {errors.email}
+            </p>
+          ) : null}
         </div>
 
-        <div>
+        <div className="login-field">
           <label htmlFor="password">Password</label>
+
           <input
             id="password"
             name="password"
@@ -120,20 +155,34 @@ function LoginPage() {
             value={formData.password}
             onChange={handleChange}
             disabled={isSubmitting}
+            placeholder="Enter your password"
           />
-          {errors.password ? <p role="alert">{errors.password}</p> : null}
+
+          {errors.password ? (
+            <p className="login-validation">
+              {errors.password}
+            </p>
+          ) : null}
         </div>
 
-        <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Signing in...' : 'Login'}
+        <button
+          className="login-button"
+          type="submit"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? 'Signing In...' : 'Sign In'}
         </button>
       </form>
 
-      <p>
-        Need an account? <Link to="/register">Register here</Link>.
-      </p>
-    </main>
-  )
+      <div className="login-footer">
+        Need an account?{' '}
+        <Link to="/register">
+          Create one here
+        </Link>
+      </div>
+    </section>
+  </main>
+)
 }
 
 export default LoginPage
