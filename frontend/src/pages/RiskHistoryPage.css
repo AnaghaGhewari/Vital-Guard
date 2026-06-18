@@ -132,3 +132,10 @@
   margin-bottom: 0;
 }
 
+
+.register-brand__logo {
+  width: 180px;
+  height: auto;
+  display: block;
+  margin: 0 auto 20px;
+}

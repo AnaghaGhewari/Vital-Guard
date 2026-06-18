@@ -4,6 +4,7 @@ import client from '../api/client.js'
 import { useAuth } from '../context/AuthContext.jsx'
 import { getApiErrorMessage } from '../utils/authErrors.js'
 import './LoginPage.css'
+import logo from '../assets/vitalguard-logo.png'
 
 function validateLoginForm(formData) {
   const errors = {}
@@ -96,9 +97,11 @@ function LoginPage() {
           AI Health Monitoring
         </p>
 
-        <h1 className="login-brand__title">
-          VitalGuard
-        </h1>
+        <img
+           src={logo}
+           alt="VitalGuard"
+           className="login-brand__logo"
+        />
 
         <p className="login-brand__subtitle">
           Your personal AI health companion for smarter monitoring, early risk detection, and healthier decisions.

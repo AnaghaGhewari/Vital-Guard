@@ -19,7 +19,7 @@ body:has(.dashboard-page) #root > div {
 body:has(.dashboard-page) header {
   max-width: 1180px;
   margin: 0 auto;
-  padding: 24px 24px 8px;
+  padding: 18px 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -461,4 +461,58 @@ body:has(.dashboard-page) header button {
   .contribution-row__value {
     white-space: normal;
   }
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  color: #0f2530;
+}
+
+.navbar-brand__logo {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
+}
+
+.navbar-brand__title {
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: #0f2530;
+}
+
+.navbar-brand__subtitle {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #0f766e;
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navbar-user__avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg,#0ea5e9,#14b8a6);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.navbar-user__info span {
+  font-size: 0.95rem;
+  color: #4b6570;
 }

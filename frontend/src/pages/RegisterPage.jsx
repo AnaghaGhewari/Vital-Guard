@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import client from '../api/client.js'
 import { getApiErrorMessage } from '../utils/authErrors.js'
 import './RegisterPage.css'
+import logo from '../assets/vitalguard-logo.png'
 
 function validateRegisterForm(formData) {
   const errors = {}
@@ -94,9 +95,11 @@ function RegisterPage() {
           AI Health Monitoring
         </p>
 
-        <h1 className="register-brand__title">
-          VitalGuard
-        </h1>
+        <img
+          src={logo}
+          alt="VitalGuard"
+          className="register-brand__logo"
+        />
 
         <p className="register-brand__subtitle">
           Create your account and start tracking your health with AI-powered insights and personalized risk monitoring.
