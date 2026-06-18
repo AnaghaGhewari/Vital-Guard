@@ -23,7 +23,7 @@ body:has(.login-page) {
   backdrop-filter: blur(12px);
   border-radius: 32px;
   padding: 40px;
-  box-shadow: 0 24px 56px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.12);
   border: 1px solid rgba(148, 163, 184, 0.15);
 }
 
@@ -97,10 +97,12 @@ body:has(.login-page) {
   font-weight: 700;
   cursor: pointer;
   margin-top: 8px;
+  transition: all 0.2s ease;
 }
 
 .login-button:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(20, 184, 166, 0.25);
 }
 
 .login-button:disabled {

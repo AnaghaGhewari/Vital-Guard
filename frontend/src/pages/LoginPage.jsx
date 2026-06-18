@@ -101,9 +101,8 @@ function LoginPage() {
         </h1>
 
         <p className="login-brand__subtitle">
-          Sign in to access your health dashboard,
-          risk predictions and monitoring history.
-        </p>
+          Your personal AI health companion for smarter monitoring, early risk detection, and healthier decisions.
+        </p>  
       </div>
 
       {successMessage ? (
