@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import client from '../api/client.js'
 import { getApiErrorMessage } from '../utils/authErrors.js'
+import './RegisterPage.css'
 
 function validateRegisterForm(formData) {
   const errors = {}
@@ -86,15 +87,36 @@ function RegisterPage() {
   }
 
   return (
-    <main>
-      <h1>Register</h1>
-      <p>Create your VitalGuard account.</p>
+  <main className="register-page">
+    <section className="register-card">
+      <div className="register-brand">
+        <p className="register-brand__eyebrow">
+          AI Health Monitoring
+        </p>
 
-      {errorMessage ? <p role="alert">{errorMessage}</p> : null}
+        <h1 className="register-brand__title">
+          VitalGuard
+        </h1>
 
-      <form onSubmit={handleSubmit} noValidate>
-        <div>
-          <label htmlFor="name">Name</label>
+        <p className="register-brand__subtitle">
+          Create your account and start tracking your health with AI-powered insights and personalized risk monitoring.
+        </p>
+      </div>
+
+      {errorMessage ? (
+        <div className="register-error" role="alert">
+          {errorMessage}
+        </div>
+      ) : null}
+
+      <form
+        className="register-form"
+        onSubmit={handleSubmit}
+        noValidate
+      >
+        <div className="register-field">
+          <label htmlFor="name">Full Name</label>
+
           <input
             id="name"
             name="name"
@@ -103,12 +125,19 @@ function RegisterPage() {
             value={formData.name}
             onChange={handleChange}
             disabled={isSubmitting}
+            placeholder="Enter your full name"
           />
-          {errors.name ? <p role="alert">{errors.name}</p> : null}
+
+          {errors.name ? (
+            <p className="register-validation">
+              {errors.name}
+            </p>
+          ) : null}
         </div>
 
-        <div>
-          <label htmlFor="email">Email</label>
+        <div className="register-field">
+          <label htmlFor="email">Email Address</label>
+
           <input
             id="email"
             name="email"
@@ -117,12 +146,19 @@ function RegisterPage() {
             value={formData.email}
             onChange={handleChange}
             disabled={isSubmitting}
+            placeholder="Enter your email"
           />
-          {errors.email ? <p role="alert">{errors.email}</p> : null}
+
+          {errors.email ? (
+            <p className="register-validation">
+              {errors.email}
+            </p>
+          ) : null}
         </div>
 
-        <div>
+        <div className="register-field">
           <label htmlFor="password">Password</label>
+
           <input
             id="password"
             name="password"
@@ -131,20 +167,34 @@ function RegisterPage() {
             value={formData.password}
             onChange={handleChange}
             disabled={isSubmitting}
+            placeholder="Create a password"
           />
-          {errors.password ? <p role="alert">{errors.password}</p> : null}
+
+          {errors.password ? (
+            <p className="register-validation">
+              {errors.password}
+            </p>
+          ) : null}
         </div>
 
-        <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Creating account...' : 'Register'}
+        <button
+          className="register-button"
+          type="submit"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? 'Creating Account...' : 'Create Account'}
         </button>
       </form>
 
-      <p>
-        Already have an account? <Link to="/login">Login here</Link>.
-      </p>
-    </main>
-  )
+      <div className="register-footer">
+        Already have an account?{' '}
+        <Link to="/login">
+          Sign in here
+        </Link>
+      </div>
+    </section>
+  </main>
+)
 }
 
 export default RegisterPage
