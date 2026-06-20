@@ -140,3 +140,26 @@ def get_risk_history(
         "trend": trend
     }
 
+
+@router.get("/debug-latest")
+def debug_latest(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    latest = (
+        db.query(Vital)
+        .filter(Vital.user_id == current_user.id)
+        .order_by(Vital.logged_at.desc())
+        .first()
+    )
+
+    return {
+        "glucose": latest.glucose,
+        "blood_pressure": latest.blood_pressure,
+        "bmi": latest.bmi,
+        "age": latest.age,
+        "heart_rate": latest.heart_rate,
+        "sleep_hours": latest.sleep_hours,
+        "steps": latest.steps,
+    }
+

@@ -23,6 +23,13 @@ def log_vital(data: VitalCreate, db: Session = Depends(get_db), current_user: Us
             heart_rate=data.heart_rate,
             sleep_hours=data.sleep_hours,
             steps=data.steps,
+            
+#The vitals that the model requires
+            glucose = data.glucose,
+            blood_pressure=data.blood_pressure,
+            bmi=data.bmi,
+            age=data.age,
+
             notes=data.notes
         )
         db.add(vital)

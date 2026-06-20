@@ -49,12 +49,22 @@ def _build_shap_explanation(shap_vals:dict) ->str:
     """Turn SHAP values into human- readable sentence."""
     #Sort by absolute impact, Biggest risk first
 
-    sorted_vals = sorted(
-        shap_vals.items(),
-        key = lambda x: abs(x[1]),
-        reverse=True
-    )
-    top_feature, top_val = sorted_vals[0]
+    
+    positive_vals ={
+        k: v for k, v in shap_vals.items()
+        if v > 0
+    }
+
+    if positive_vals:
+        top_feature = max(positive_vals, key= positive_vals.get)
+        top_val = positive_vals[top_feature]
+    
+    else:
+        top_feature, top_val = sorted(
+            shap_vals.items(),
+            key= lambda x: abs(x[1]),
+            reverse= True
+        )[0]
 
     advice = {
         "glucose":          "Consider reducing sugar and refined carb intake.",
@@ -106,7 +116,14 @@ def predict(
     if age                is None: missing.append("age")
 
     #Bulid features array -  order must match  training: glucose, bp, bmi, age
+    print("INPUT VALUES")
+    print("glucose =", g)
+    print("blood_pressure =", bp)
+    print("bmi =", b)
+    print("age =", a)
+
     features  = np.array([[g, bp, b, a]])
+    print("FEATURE VECTOR =", features)
     scaled   = _scaler.transform(features)
     score    = float(_model.predict_proba(scaled)[0][1])
     level    = get_risk_level(score)
